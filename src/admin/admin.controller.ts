@@ -1,34 +1,41 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Body, Param, Delete, Put } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateAdminDto } from './dto/create-admin.dto';
-import { UpdateAdminDto } from './dto/update-admin.dto';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { UpdatePostDto } from 'src/posts/dto/update-post.dto';
 
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @Post()
-  create(@Body() createAdminDto: CreateAdminDto) {
-    return this.adminService.create(createAdminDto);
+
+  @Get('users')
+  findAllUsers() {
+    return this.adminService.findAllUsers();
   }
 
-  @Get()
-  findAll() {
-    return this.adminService.findAll();
+  @Put('users/:id')
+  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.adminService.updateUser(+id, updateUserDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.adminService.findOne(+id);
+  @Delete('users/:id')
+  removeUser(@Param('id') id: string) {
+    return this.adminService.removeUser(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto) {
-    return this.adminService.update(+id, updateAdminDto);
+  @Get('posts')
+  findAllPosts() {
+    return this.adminService.findAllPosts();
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.adminService.remove(+id);
+  @Put('posts/:id')
+  updatePost(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+    return this.adminService.updatePost(+id, updatePostDto);
   }
+
+  @Delete('posts/:id')
+  removePost(@Param('id') id: string) {
+    return this.adminService.removePost(+id);
+  }
+
 }
