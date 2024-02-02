@@ -8,6 +8,10 @@ export class UsersService {
     return 'This action adds a new user';
   }
 
+  login(createUserDto: CreateUserDto) {
+    return 'This action login an user';
+  }
+
   findAll() {
     return `This action returns all users`;
   }
