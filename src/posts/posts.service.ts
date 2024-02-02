@@ -12,6 +12,10 @@ export class PostsService {
     return `This action returns all posts`;
   }
 
+  findAllByUserId(userId: string) {
+    return `This action returns all posts by user id`;
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} post`;
   }
