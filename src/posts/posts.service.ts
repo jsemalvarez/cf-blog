@@ -11,13 +11,21 @@ export class PostsService {
   findAll() {
     return `This action returns all posts`;
   }
+  
+  findByUserId(userId: string) {
+    return `This action returns all posts by userId ${userId}`;
+  }
 
-  findAllByUserId(userId: string) {
-    return `This action returns all posts by user id`;
+  findByTag(tag:string){
+    return `This action returns all posts filter by tag ${tag}`;
+  }
+
+  findByTerm(term:string){
+    return `This action returns all posts filter by term ${term}`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} post`;
+    return `This action returns a postId #${id}`;
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
