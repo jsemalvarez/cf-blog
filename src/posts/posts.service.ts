@@ -18,7 +18,7 @@ export class PostsService {
   }
 
   findAll() {
-    return `This action returns all posts`;
+    return this.postModel.find({});
   }
   
   findByUserId(userId: string) {
