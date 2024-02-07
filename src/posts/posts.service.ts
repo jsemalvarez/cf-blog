@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -33,8 +33,14 @@ export class PostsService {
     return `This action returns all posts filter by term ${term}`;
   }
 
-  findOne(id: number) {
-    return `This action returns a postId #${id}`;
+  async findOne(id: string) {
+    const post = await this.postModel.findById(id);
+
+    if(!post){
+      throw new NotFoundException(`post id ${id} not found`);
+    }
+    
+    return post;
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
