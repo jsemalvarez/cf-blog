@@ -33,18 +33,26 @@ export class PostsService {
     return `This action returns all posts filter by term ${term}`;
   }
 
+  //TODO: rename findOneById
   async findOne(id: string) {
     const post = await this.postModel.findById(id);
 
     if(!post){
       throw new NotFoundException(`post id ${id} not found`);
     }
-    
+
     return post;
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+  async update(id: string, updatePostDto: UpdatePostDto) {
+    const post = await this.findOne(id)
+    const updateData = {
+      ...post.toJSON(),
+      ...updatePostDto,
+      _id:id
+    }
+    await post.updateOne(updatePostDto)
+    return updateData;
   }
 
   remove(id: number) {

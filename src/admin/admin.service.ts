@@ -28,7 +28,7 @@ export class AdminService {
     return this.postsService.findAll();
   }
 
-  updatePost(id: number, updatePostDto: UpdatePostDto) {
+  updatePost(id: string, updatePostDto: UpdatePostDto) {
     return this.postsService.update(id, updatePostDto);
   }
 

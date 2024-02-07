@@ -30,7 +30,7 @@ export class AdminController {
 
   @Put('posts/:id')
   updatePost(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.adminService.updatePost(+id, updatePostDto);
+    return this.adminService.updatePost(id, updatePostDto);
   }
 
   @Delete('posts/:id')
