@@ -1,16 +1,20 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { Post } from './entities/post.entity';
 
 @Injectable()
 export class PostsService {
 
   constructor(
-    private readonly postService: PostsService
+    @InjectModel( Post.name )
+    private readonly postModel: Model<Post>
   ){}
 
   create(createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
+    return this.postModel.create(createPostDto);
   }
 
   findAll() {
