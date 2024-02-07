@@ -55,7 +55,11 @@ export class PostsService {
     return updateData;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async remove(id: string) {
+    const post = await this.findOne(id)
+
+    await post.deleteOne()
+
+    return {message:`Post whit id ${id} removed successfully`};
   }
 }

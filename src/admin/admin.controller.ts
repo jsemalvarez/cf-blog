@@ -35,7 +35,7 @@ export class AdminController {
 
   @Delete('posts/:id')
   removePost(@Param('id') id: string) {
-    return this.adminService.removePost(+id);
+    return this.adminService.removePost(id);
   }
 
 }

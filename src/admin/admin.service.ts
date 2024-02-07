@@ -32,7 +32,7 @@ export class AdminService {
     return this.postsService.update(id, updatePostDto);
   }
 
-  removePost(id: number) {
+  removePost(id: string) {
     return this.postsService.remove(id);
   }
 
