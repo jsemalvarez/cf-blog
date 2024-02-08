@@ -16,7 +16,7 @@ export class AdminService {
     return this.usersService.findAll();
   }
 
-  updateUser(id: number, updateUserDto: UpdateUserDto) {
+  updateUser(id: string, updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 

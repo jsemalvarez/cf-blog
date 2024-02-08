@@ -15,7 +15,7 @@ export class AdminController {
 
   @Put('users/:id')
   updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.adminService.updateUser(+id, updateUserDto);
+    return this.adminService.updateUser(id, updateUserDto);
   }
 
   @Delete('users/:id')
