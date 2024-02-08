@@ -20,7 +20,7 @@ export class AdminController {
 
   @Delete('users/:id')
   removeUser(@Param('id') id: string) {
-    return this.adminService.removeUser(+id);
+    return this.adminService.removeUser(id);
   }
 
   @Get('posts')

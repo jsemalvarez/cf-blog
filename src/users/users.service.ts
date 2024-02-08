@@ -49,7 +49,9 @@ export class UsersService {
     return userUpdated;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const user = await this.findOne(id);
+    await user.deleteOne({_id:id})
+    return `Delete user id ${id} successfully`;
   }
 }

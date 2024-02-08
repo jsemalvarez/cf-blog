@@ -20,7 +20,7 @@ export class AdminService {
     return this.usersService.update(id, updateUserDto);
   }
 
-  removeUser(id: number) {
+  removeUser(id: string) {
     return this.usersService.remove(id);
   }
 
