@@ -39,7 +39,7 @@ export class PostsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+  update(@Param('id', ParseMongoIdPipe) id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.postsService.update(id, updatePostDto);
   }
 
