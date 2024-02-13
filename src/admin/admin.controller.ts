@@ -2,6 +2,7 @@ import { Controller, Get, Body, Param, Delete, Put } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { UpdatePostDto } from 'src/posts/dto/update-post.dto';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
 
 @Controller('admin')
 export class AdminController {
@@ -14,12 +15,12 @@ export class AdminController {
   }
 
   @Put('users/:id')
-  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  updateUser(@Param('id', ParseMongoIdPipe) id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.adminService.updateUser(id, updateUserDto);
   }
 
   @Delete('users/:id')
-  removeUser(@Param('id') id: string) {
+  removeUser(@Param('id', ParseMongoIdPipe) id: string) {
     return this.adminService.removeUser(id);
   }
 
@@ -29,12 +30,12 @@ export class AdminController {
   }
 
   @Put('posts/:id')
-  updatePost(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+  updatePost(@Param('id', ParseMongoIdPipe) id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.adminService.updatePost(id, updatePostDto);
   }
 
   @Delete('posts/:id')
-  removePost(@Param('id') id: string) {
+  removePost(@Param('id', ParseMongoIdPipe) id: string) {
     return this.adminService.removePost(id);
   }
 
